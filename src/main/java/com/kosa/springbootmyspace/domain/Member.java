@@ -1,14 +1,20 @@
 package com.kosa.springbootmyspace.domain;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,6 +45,14 @@ public class Member {
     private String phone;
 
     @Column(nullable = false)
+    @UpdateTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date birth;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Review> reviewList;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Order> orderList;
 
 }
