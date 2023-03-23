@@ -1,6 +1,7 @@
 package com.kosa.springbootmyspace.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,14 @@ public class MemberServiceImpl implements MemberService {
     private MemberRepository memberRepository;
 
     @Override
-    public Member delete(int idx) {
-        Member findMember = memberRepository.findById(idx).get();
-        memberRepository.delete(findMember);
-        return findMember;
+    public int delete(int idx) {
+        Optional<Member> findMember = memberRepository.findById(idx);
+        int result = 0;
+        if (findMember.isPresent()) {
+            memberRepository.delete(findMember.get());
+            result = 1;
+        }
+        return result;
     }
 
     @Override
@@ -37,8 +42,21 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member update(Member member) {
-        return memberRepository.save(member);
+    public int update(Member member) {
+        Optional<Member> findMember = memberRepository.findById(member.getIdx());
+        int result = 0;
+        if (findMember.isPresent()) {
+            Member dbMember = findMember.get();
+            dbMember.setLogin_id(member.getLogin_id());
+            dbMember.setPassword(member.getPassword());
+            dbMember.setName(member.getName());
+            dbMember.setEmail(member.getEmail());
+            dbMember.setPhone(member.getPhone());
+            dbMember.setBirth(member.getBirth());
+            memberRepository.save(dbMember);
+            result = 1;
+        }
+        return result;
     }
 
 }

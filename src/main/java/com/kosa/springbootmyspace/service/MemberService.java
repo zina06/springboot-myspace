@@ -8,9 +8,9 @@ public interface MemberService {
 
     Member save(Member member);
 
-    Member update(Member member);
+    int update(Member member);
 
-    Member delete(int idx);
+    int delete(int idx);
 
     Member findById(int idx);
 

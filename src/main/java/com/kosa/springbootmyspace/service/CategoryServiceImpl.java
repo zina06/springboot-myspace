@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kosa.springbootmyspace.domain.Product;
-import com.kosa.springbootmyspace.repository.ProductRepository;
+import com.kosa.springbootmyspace.domain.Category;
+import com.kosa.springbootmyspace.repository.CategoryRepository;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private CategoryRepository categoryRepository;
 
     @Override
     public int delete(int idx) {
@@ -21,23 +21,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAll() {
+    public List<Category> findAll() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Product findById(int idx) {
-        return productRepository.findById(idx).get();
+    public Category findById(int idx) {
+        return categoryRepository.findById(idx).get();
     }
 
     @Override
-    public Product save(Product product) {
-        return productRepository.save(product);
+    public Category save(Category category) {
+        return categoryRepository.save(category);
     }
 
     @Override
-    public int update(Product product) {
+    public int update(Category category) {
         // TODO Auto-generated method stub
         return 0;
     }

@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -36,5 +38,6 @@ public class Score {
 
     @OneToOne
     @JoinColumn(name = "review_idx")
+    @JsonIgnore
     private Review review;
 }

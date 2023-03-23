@@ -13,11 +13,13 @@ import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @SequenceGenerator(name = "CART_PRODUCT_SEQ_GEN", sequenceName = "CART_PRODUCT_SEQ", allocationSize = 1)
 public class CartProduct {
@@ -34,7 +36,7 @@ public class CartProduct {
     @JsonIgnore
     private Cart cart;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "product_idx")
     private Product product;
 }

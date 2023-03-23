@@ -8,9 +8,9 @@ public interface ProductService {
 
     Product save(Product product);
 
-    Product update(Product product);
+    int update(Product product);
 
-    Product delete(int idx);
+    int delete(int idx);
 
     Product findById(int idx);
 

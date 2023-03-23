@@ -17,11 +17,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity(name = "ORDER2")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @SequenceGenerator(name = "ORDER2_SEQ_GEN", sequenceName = "ORDER2_SEQ", allocationSize = 1)
 public class Order {
@@ -61,7 +63,7 @@ public class Order {
     @JsonIgnore
     private Member member;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "cart_idx")
     private Cart cart;
 }
