@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
@@ -44,7 +43,6 @@ public class Member {
     private String phone;
 
     @Column(nullable = false)
-    @UpdateTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date birth;
 
