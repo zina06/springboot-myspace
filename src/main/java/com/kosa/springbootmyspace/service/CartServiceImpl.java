@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosa.springbootmyspace.domain.Cart;
+import com.kosa.springbootmyspace.domain.Member;
 import com.kosa.springbootmyspace.repository.CartRepository;
+import com.kosa.springbootmyspace.repository.MemberRepository;
 
 @Service
 public class CartServiceImpl implements CartService {
 
     @Autowired
     private CartRepository cartRepository;
+
+    @Autowired
+    private MemberRepository memberRepository;
 
     @Override
     public int delete(int idx) {
@@ -39,6 +44,13 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart save(Cart cart) {
         return cartRepository.save(cart);
+    }
+
+    @Override
+    public Cart findByMemberOrderByIdxAsc(int memberIdx) {
+        Member findMember = memberRepository.findById(memberIdx).get();
+        List<Cart> cartList = cartRepository.findByMemberOrderByIdxAsc(findMember);
+        return cartList.get(cartList.size() - 1);
     }
 
 }

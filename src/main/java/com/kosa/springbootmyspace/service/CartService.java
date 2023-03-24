@@ -14,4 +14,6 @@ public interface CartService {
 
     List<Cart> findAll();
 
+    Cart findByMemberOrderByIdxAsc(int memberIdx);
+
 }

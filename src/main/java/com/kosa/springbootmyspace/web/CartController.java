@@ -63,4 +63,23 @@ public class CartController {
         return new ResponseEntity<Cart>(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * member의 idx로 해당 member의 현재 cart를 조회
+     * 
+     * @param idx
+     * @return
+     */
+    @GetMapping("/member/{idx}")
+    public ResponseEntity<Cart> findByMemberOrderByIdxAsc(@PathVariable int idx) {
+        try {
+            Cart findCart = cartService.findByMemberOrderByIdxAsc(idx);
+            if (findCart != null) {
+                return new ResponseEntity<Cart>(findCart, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return new ResponseEntity<Cart>(HttpStatus.NO_CONTENT);
+    }
+
 }
