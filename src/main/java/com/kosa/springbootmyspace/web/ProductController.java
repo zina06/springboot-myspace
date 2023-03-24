@@ -102,8 +102,8 @@ public class ProductController {
      * @param searchKeyword
      * @return
      */
-    @GetMapping("/search/gkh")
-    public ResponseEntity<List<Product>> findByCategory(@RequestParam(value = "searchKeyword") String searchKeyword) {
+    @GetMapping("/search/{searchKeyword}")
+    public ResponseEntity<List<Product>> findByCategory(@PathVariable String searchKeyword) {
         try {
             List<Product> findProductList = productService.findByNameLike("%" + searchKeyword + "%");
             if (findProductList != null) {
