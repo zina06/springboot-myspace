@@ -16,6 +16,7 @@ public class ScoreServiceImpl implements  ScoreService{
 
     @Override
     public Score save(Score score) {
+        score.setTotal((score.getDelivery()+score.getPrice()+score.getDesign()+ score.getPrice())/4f);
         return scoreRepository.save(score);
     }
     @Override
@@ -48,7 +49,8 @@ public class ScoreServiceImpl implements  ScoreService{
 
     @Override
     public Score findById(int idx) {
-        return scoreRepository.findById(idx).get();
+        Score score = scoreRepository.findById(idx).get();
+        return score;
     }
 
     @Override

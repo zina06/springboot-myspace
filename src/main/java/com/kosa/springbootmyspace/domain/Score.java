@@ -37,6 +37,8 @@ public class Score {
     @JsonIgnore
     private Review review;
 
-    @Transient
-    private double total;
+    @Column
+    private float total;
+
+
 }
