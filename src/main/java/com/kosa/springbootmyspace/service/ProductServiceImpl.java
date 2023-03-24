@@ -2,6 +2,7 @@ package com.kosa.springbootmyspace.service;
 
 import java.util.List;
 
+import com.kosa.springbootmyspace.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,4 +43,13 @@ public class ProductServiceImpl implements ProductService {
         return 0;
     }
 
+    @Override
+    public List<Product> findByCategory(Category category) {
+        return productRepository.findByCategory(category);
+    }
+
+    @Override
+    public List<Product> findByNameLike(String searchKeyword) {
+        return productRepository.findByNameLike(searchKeyword);
+    }
 }
