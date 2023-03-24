@@ -41,7 +41,7 @@ public class Order {
 
     @Column
     @CreationTimestamp
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date regdate;
 
     @Column

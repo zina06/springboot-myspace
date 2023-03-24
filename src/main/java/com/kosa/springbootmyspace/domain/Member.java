@@ -41,7 +41,7 @@ public class Member {
     private String phone;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
 
     // @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
