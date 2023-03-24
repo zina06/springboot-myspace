@@ -3,8 +3,9 @@ package com.kosa.springbootmyspace.service;
 import java.util.List;
 
 import com.kosa.springbootmyspace.domain.Member;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface MemberService {
+public interface MemberService extends UserDetailsService {
 
     Member save(Member member);
 
@@ -15,4 +16,5 @@ public interface MemberService {
     Member findById(int idx);
 
     List<Member> findAll();
+
 }

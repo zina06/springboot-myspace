@@ -29,8 +29,8 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GEN")
     private int idx;
 
-    @Column(nullable = false)
-    private String login_id;
+    @Column(nullable = false ,name ="login_id")
+    private String loginId;
 
     @Column(nullable = false)
     private String password;

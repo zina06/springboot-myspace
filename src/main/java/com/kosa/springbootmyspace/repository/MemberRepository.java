@@ -6,4 +6,5 @@ import com.kosa.springbootmyspace.domain.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
+    Member findByLoginId(String name);
 }

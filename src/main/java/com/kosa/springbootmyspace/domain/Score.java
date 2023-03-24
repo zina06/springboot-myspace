@@ -37,8 +37,8 @@ public class Score {
     @JsonIgnore
     private Review review;
 
-    @Column
-    private float total;
+//    @Column
+//    private float total;
 
 
 }
