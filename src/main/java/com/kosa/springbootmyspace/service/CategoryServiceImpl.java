@@ -1,6 +1,7 @@
 package com.kosa.springbootmyspace.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public int delete(int idx) {
-        // TODO Auto-generated method stub
-        return 0;
+        Optional<Category> findCategory = categoryRepository.findById(idx);
+        if (!findCategory.isPresent()) {
+            return 0;
+        }
+        categoryRepository.delete(findCategory.get());
+        return 1;
     }
 
     @Override
     public List<Category> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        return categoryRepository.findAll();
     }
 
     @Override
@@ -38,8 +42,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public int update(Category category) {
-        // TODO Auto-generated method stub
-        return 0;
+        Optional<Category> findCategory = categoryRepository.findById(category.getIdx());
+        if (!findCategory.isPresent()) {
+            return 0;
+        }
+        categoryRepository.save(findCategory.get());
+        return 1;
     }
 
 }
