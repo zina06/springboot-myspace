@@ -1,6 +1,5 @@
 package com.kosa.springbootmyspace.web;
 
-import com.kosa.springbootmyspace.domain.Member;
 import com.kosa.springbootmyspace.domain.Product;
 import com.kosa.springbootmyspace.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
-
 
     @Autowired
     private ProductService productService;
@@ -33,13 +31,12 @@ public class ProductController {
         return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
     }
 
-
     @PutMapping("/update")
     public ResponseEntity<Product> update(@RequestBody Product product) {
         try {
             int result = productService.update(product);
             if (result == 1) {
-                Product updateProduct=productService.findById(product.getIdx());
+                Product updateProduct = productService.findById(product.getIdx());
                 return new ResponseEntity<Product>(updateProduct, HttpStatus.OK);
             }
         } catch (Exception e) {
@@ -47,7 +44,6 @@ public class ProductController {
         }
         return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
     }
-
 
     @DeleteMapping("/delete/{idx}")
     public ResponseEntity<Integer> delete(@PathVariable int idx) {
@@ -62,15 +58,14 @@ public class ProductController {
         return new ResponseEntity<Integer>(HttpStatus.NO_CONTENT);
     }
 
-
     @GetMapping("/{idx}")
     public ResponseEntity<Product> findById(@PathVariable int idx) {
         try {
             Product findproduct = productService.findById(idx);
-            if(findproduct!=null){
+            if (findproduct != null) {
                 return new ResponseEntity<Product>(findproduct, HttpStatus.OK);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
         }
         return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
