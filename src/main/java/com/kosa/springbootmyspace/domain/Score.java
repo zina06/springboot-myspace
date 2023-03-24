@@ -12,10 +12,13 @@ import javax.persistence.SequenceGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @SequenceGenerator(name = "SCORE_SEQ_GEN", sequenceName = "SCORE_SEQ", allocationSize = 1)
 public class Score {
