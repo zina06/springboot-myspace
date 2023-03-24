@@ -60,7 +60,6 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_idx")
-    @JsonIgnore
     private Member member;
 
     @OneToOne

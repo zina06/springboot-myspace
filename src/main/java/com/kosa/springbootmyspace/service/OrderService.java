@@ -12,4 +12,6 @@ public interface OrderService {
     Order findByID(int idx);
 
     List<Order> findAll();
+
+    List<Order> findAllByMemberIdx(int idx);
 }

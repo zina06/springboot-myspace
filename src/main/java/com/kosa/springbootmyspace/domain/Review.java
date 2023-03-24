@@ -9,9 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,7 +33,6 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "member_idx")
-    @JsonIgnore
     private Member member;
 
     @ManyToOne
@@ -50,4 +47,5 @@ public class Review {
 
     @OneToOne(mappedBy = "review")
     private Score score;
+
 }

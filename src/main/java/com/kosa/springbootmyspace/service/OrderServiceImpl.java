@@ -1,6 +1,7 @@
 package com.kosa.springbootmyspace.service;
 
 import com.kosa.springbootmyspace.domain.Cart;
+import com.kosa.springbootmyspace.domain.Member;
 import com.kosa.springbootmyspace.domain.Order;
 import com.kosa.springbootmyspace.repository.CartRepository;
 import com.kosa.springbootmyspace.repository.MemberRepository;
@@ -32,6 +33,15 @@ public class OrderServiceImpl implements OrderService {
             cartRepository.save(cart);
         }
         return saveOrder;
+    }
+
+    @Override
+    public List<Order> findAllByMemberIdx(int idx) {
+        Optional<Member> findMember = memberRepository.findById(idx);
+        if (findMember.isPresent()) {
+            return orderRepository.findByMember(findMember.get());
+        }
+        return null;
     }
 
     @Override

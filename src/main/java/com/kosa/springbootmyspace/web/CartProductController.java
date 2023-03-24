@@ -16,6 +16,7 @@ public class CartProductController {
     @Autowired
     private CartProductService cartProductService;
 
+    @PostMapping("/save") // 상품 담기
     public ResponseEntity<CartProduct> save(@RequestBody CartProduct cartProduct) {
         try {
             CartProduct addedProduct = cartProductService.save(cartProduct);
@@ -27,8 +28,6 @@ public class CartProductController {
         }
         return new ResponseEntity<CartProduct>(HttpStatus.NO_CONTENT);
     }
-
-    @PostMapping("/save") // 상품 담기
 
     @DeleteMapping("/delete/{idx}") // 상품 삭제
     public ResponseEntity<Integer> delete(@PathVariable int idx) {
@@ -42,19 +41,6 @@ public class CartProductController {
         }
         return new ResponseEntity<Integer>(HttpStatus.NO_CONTENT);
     }
-
-    // @GetMapping("/findAll") //장바구니 목록
-    // public ResponseEntity<List<CartProduct>> findAll(@PathVariable int idx) {
-    // try{
-    // List<CartProduct> cartProductList = cartProductService.findAll(idx);
-    // if(cartProductList != null) {
-    // return new ResponseEntity<List<CartProduct>>(cartProductList, HttpStatus.OK);
-    // }
-    // } catch (Exception e) {
-    // log.error(e.getMessage());
-    // }
-    // return new ResponseEntity<List<CartProduct>>(HttpStatus.NO_CONTENT);
-    // }
 
     @PutMapping("/update") // 수량 변경
     public ResponseEntity<CartProduct> update(@RequestBody CartProduct cartProduct) {
@@ -82,5 +68,4 @@ public class CartProductController {
         }
         return new ResponseEntity<CartProduct>(HttpStatus.NO_CONTENT);
     }
-
 }

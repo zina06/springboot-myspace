@@ -48,10 +48,10 @@ public class Member {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private Date birth;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Review> reviewList;
+    // @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    // private List<Review> reviewList;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Order> orderList;
+    // @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    // private List<Order> orderList;
 
 }

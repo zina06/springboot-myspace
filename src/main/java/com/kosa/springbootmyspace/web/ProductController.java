@@ -76,25 +76,17 @@ public class ProductController {
         return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * category의 idx로 상품목록을 조회하는 엔드포인트
+     * 
+     * @param idx
+     * @return
+     */
     @GetMapping("/category/{idx}")
     public ResponseEntity<List<Product>> findByCategory(@PathVariable int idx) {
         try {
             Category category = categoryService.findById(idx);
             List<Product> findProductList = productService.findByCategory(category);
-            if(findProductList != null){
-                return new ResponseEntity<>(findProductList, HttpStatus.OK);
-            }
-        }catch (Exception e){
-            log.error(e.getMessage());
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @GetMapping("/search/gkh")
-    public ResponseEntity<List<Product>> findByCategory(@RequestParam(value = "searchKeyword") String searchKeyword) {
-        try {
-            System.out.println(searchKeyword);
-            List<Product> findProductList = productService.findByNameLike("%" + searchKeyword + "%");
             if (findProductList != null) {
                 return new ResponseEntity<>(findProductList, HttpStatus.OK);
             }
@@ -102,6 +94,25 @@ public class ProductController {
             log.error(e.getMessage());
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    /**
+     * 상품이름으로 상품목록을 조회하는 엔드포인트
+     * 
+     * @param searchKeyword
+     * @return
+     */
+    @GetMapping("/search/gkh")
+    public ResponseEntity<List<Product>> findByCategory(@RequestParam(value = "searchKeyword") String searchKeyword) {
+        try {
+            List<Product> findProductList = productService.findByNameLike("%" + searchKeyword + "%");
+            if (findProductList != null) {
+                return new ResponseEntity<List<Product>>(findProductList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return new ResponseEntity<List<Product>>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/findAll")
