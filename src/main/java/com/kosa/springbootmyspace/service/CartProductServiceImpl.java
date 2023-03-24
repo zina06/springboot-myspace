@@ -1,7 +1,8 @@
 package com.kosa.springbootmyspace.service;
 
-import java.util.List;
+import java.util.Optional;
 
+import com.kosa.springbootmyspace.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,30 +17,44 @@ public class CartProductServiceImpl implements CartProductService {
 
     @Override
     public int delete(int idx) {
-        // TODO Auto-generated method stub
-        return 0;
+        Optional<CartProduct> findProduct = cartProductRepository.findById(idx);
+        int result = 0;
+        if (findProduct.isPresent()) {
+            cartProductRepository.delete(findProduct.get());
+            result = 1;
+        }
+        return result;
     }
 
-    @Override
-    public List<CartProduct> findAll() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    // @Override
+    // public List<CartProduct> findAll(@PathVariable int idx) {
+    //
+    //
+    // return cartProductRepository.findAll();
+    // }
 
-    @Override
+    @Override // xx
     public CartProduct findById(int idx) {
         return cartProductRepository.findById(idx).get();
     }
 
-    @Override
+    @Override // 상품 담기
     public CartProduct save(CartProduct cartProduct) {
+
         return cartProductRepository.save(cartProduct);
     }
 
     @Override
     public int update(CartProduct cartProduct) {
-        // TODO Auto-generated method stub
-        return 0;
+        Optional<CartProduct> findCartProduct = cartProductRepository.findById(cartProduct.getIdx());
+        int result = 0;
+        if (findCartProduct.isPresent()) {
+            CartProduct product = findCartProduct.get();
+            product.setAmount(cartProduct.getAmount());
+            cartProductRepository.save(product);
+            result = 1;
+        }
+        return result;
     }
 
 }

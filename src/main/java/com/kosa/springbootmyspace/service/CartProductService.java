@@ -1,7 +1,5 @@
 package com.kosa.springbootmyspace.service;
 
-import java.util.List;
-
 import com.kosa.springbootmyspace.domain.CartProduct;
 
 public interface CartProductService {
@@ -14,5 +12,6 @@ public interface CartProductService {
 
     CartProduct findById(int idx);
 
-    List<CartProduct> findAll();
+    // List<CartProduct> findAll(int idx);
+
 }

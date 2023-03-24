@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.kosa.springbootmyspace.domain.CartProduct;
 
+import java.util.List;
+
 public interface CartProductRepository extends JpaRepository<CartProduct, Integer> {
 
+    List<CartProduct> findByCart(int idx);
 }
