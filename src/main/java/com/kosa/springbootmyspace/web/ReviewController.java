@@ -111,4 +111,22 @@ public class ReviewController {
         }
         return new ResponseEntity<List<Review>>(HttpStatus.NO_CONTENT);
     }
+
+    /**
+     * product의 idx로 리뷰목록을 조회하는 엔드포인트 입니다.
+     *
+     * @param idx
+     * @return
+     */
+    public ResponseEntity<List<Review>> findAllByProductIdx(@PathVariable int idx) {
+        try {
+            List<Review> reviewList = reviewService.findAllByProductIdx(idx);
+            if (reviewList != null) {
+                return new ResponseEntity<List<Review>>(reviewList, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        return new ResponseEntity<List<Review>>(HttpStatus.NO_CONTENT);
+    }
 }

@@ -1,5 +1,6 @@
 package com.kosa.springbootmyspace.web;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,4 +123,9 @@ public class MemberController {
         return new ResponseEntity<List<Member>>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/principal")
+    public ResponseEntity<String> getPrincipal(Principal principal) {
+        String username = principal.getName();
+        return new ResponseEntity<>(username, HttpStatus.OK);
+    }
 }

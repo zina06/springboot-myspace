@@ -48,6 +48,6 @@ public class Product {
     @JoinColumn(name = "category_idx")
     private Category category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Review> reviewList;
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+//    private List<Review> reviewList;
 }

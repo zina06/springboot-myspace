@@ -31,13 +31,12 @@ public class Review {
     @Column(columnDefinition = "TEXT")
     private String image;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "member_idx")
     private Member member;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "product_idx")
-    @JsonIgnore
     private Product product;
 
     @OneToOne

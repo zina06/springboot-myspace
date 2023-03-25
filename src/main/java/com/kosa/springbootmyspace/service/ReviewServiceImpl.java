@@ -3,6 +3,10 @@ package com.kosa.springbootmyspace.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.kosa.springbootmyspace.domain.Order;
+import com.kosa.springbootmyspace.domain.Product;
+import com.kosa.springbootmyspace.repository.OrderRepository;
+import com.kosa.springbootmyspace.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,12 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public int delete(int idx) {
@@ -71,5 +81,12 @@ public class ReviewServiceImpl implements ReviewService {
             result = 1;
         }
         return result;
+    }
+
+    @Override
+    public List<Review> findAllByProductIdx(int idx) {
+        Optional<Product> product = productRepository.findById(idx);
+
+        return reviewRepository.findByProduct(product.get());
     }
 }

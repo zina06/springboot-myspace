@@ -18,4 +18,6 @@ public interface ReviewService {
 
     List<Review> findAll();
 
+    List<Review> findAllByProductIdx(int idx);
+
 }
