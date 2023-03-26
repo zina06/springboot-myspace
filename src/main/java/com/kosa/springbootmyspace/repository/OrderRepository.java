@@ -9,5 +9,5 @@ import com.kosa.springbootmyspace.domain.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-    List<Order> findByMember(Member member);
+    List<Order> findByMemberOrderByIdxDesc(Member member);
 }

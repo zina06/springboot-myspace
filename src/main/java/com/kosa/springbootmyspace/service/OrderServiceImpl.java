@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findAllByMemberIdx(int idx) {
         Optional<Member> findMember = memberRepository.findById(idx);
         if (findMember.isPresent()) {
-            return orderRepository.findByMember(findMember.get());
+            return orderRepository.findByMemberOrderByIdxDesc(findMember.get());
         }
         return null;
     }
