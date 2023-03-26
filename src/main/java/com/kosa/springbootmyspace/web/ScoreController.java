@@ -22,6 +22,7 @@ public class ScoreController {
     public ResponseEntity<Score> save(@RequestBody Score score) {
         try {
             Score saveScore = scoreService.save(score);
+
             if (saveScore != null) {
                 return new ResponseEntity<Score>(saveScore, HttpStatus.CREATED);
             }

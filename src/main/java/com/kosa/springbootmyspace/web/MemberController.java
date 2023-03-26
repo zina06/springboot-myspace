@@ -124,8 +124,12 @@ public class MemberController {
     }
 
     @GetMapping("/principal")
-    public ResponseEntity<String> getPrincipal(Principal principal) {
-        String username = principal.getName();
-        return new ResponseEntity<>(username, HttpStatus.OK);
+    public ResponseEntity<Member> getPrincipal(Principal principal) {
+        if(principal == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        Member member = memberService.findByLoginId(principal.getName());
+
+        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 }

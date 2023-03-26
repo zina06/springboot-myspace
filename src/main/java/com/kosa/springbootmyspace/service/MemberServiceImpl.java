@@ -79,4 +79,9 @@ public class MemberServiceImpl implements MemberService {
         }
         return result;
     }
+
+    @Override
+    public Member findByLoginId(String loginId) {
+        return memberRepository.findByLoginId(loginId);
+    }
 }

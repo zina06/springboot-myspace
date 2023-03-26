@@ -17,4 +17,6 @@ public interface MemberService extends UserDetailsService {
 
     List<Member> findAll();
 
+    Member findByLoginId(String loginId);
+
 }
