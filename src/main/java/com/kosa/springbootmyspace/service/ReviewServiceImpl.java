@@ -3,7 +3,6 @@ package com.kosa.springbootmyspace.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.kosa.springbootmyspace.domain.Order;
 import com.kosa.springbootmyspace.domain.Product;
 import com.kosa.springbootmyspace.repository.OrderRepository;
 import com.kosa.springbootmyspace.repository.ProductRepository;
@@ -23,9 +22,6 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private MemberRepository memberRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
 
     @Autowired
     private ProductRepository productRepository;
