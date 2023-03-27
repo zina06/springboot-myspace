@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.kosa.springbootmyspace.domain.Product;
-import com.kosa.springbootmyspace.repository.OrderRepository;
 import com.kosa.springbootmyspace.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

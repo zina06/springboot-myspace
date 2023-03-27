@@ -1,8 +1,19 @@
 package com.kosa.springbootmyspace.domain;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import javax.persistence.*;
+=======
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+>>>>>>> 3b625216e9bec4b8c4380df9629c5c48c80a4c27
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,8 +50,8 @@ public class Product {
     @JoinColumn(name = "category_idx")
     private Category category;
 
-//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-//    private List<Review> reviewList;
+
     @Transient
     private float allTotal;
+
 }

@@ -89,4 +89,17 @@ public class OrderController {
         return new ResponseEntity<List<Order>>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/recently/{idx}")
+    public ResponseEntity<Order> findByMemberOrderByIdxAsc(@PathVariable int idx){
+        try{
+            Order findOrder = orderService.findByMemberOrderByIdxAsc(idx);
+            if(findOrder !=null){
+                return new ResponseEntity<Order>(findOrder, HttpStatus.OK);
+            }
+        } catch(Exception e){
+            log.error(e.getMessage());
+        }
+        return  new ResponseEntity<Order>(HttpStatus.NO_CONTENT);
+    }
+
 }

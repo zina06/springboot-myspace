@@ -31,9 +31,8 @@ public class CartProduct {
     @Column(nullable = false)
     private int amount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cart_idx")
-    @JsonIgnore
     private Cart cart;
 
     @OneToOne

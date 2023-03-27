@@ -25,7 +25,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GEN")
     private int idx;
 
-    @Column(nullable = false ,name ="login_id")
+    @Column(nullable = false, name = "login_id")
     private String loginId;
 
     @Column(nullable = false)
@@ -43,11 +43,5 @@ public class Member {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
-
-    // @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    // private List<Review> reviewList;
-
-    // @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    // private List<Order> orderList;
 
 }
