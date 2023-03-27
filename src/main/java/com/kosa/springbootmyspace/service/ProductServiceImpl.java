@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import com.kosa.springbootmyspace.domain.Category;
+import com.kosa.springbootmyspace.domain.Review;
+import com.kosa.springbootmyspace.domain.Score;
+import com.kosa.springbootmyspace.repository.ReviewRepository;
+import com.kosa.springbootmyspace.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ScoreRepository scoreRepository;
 
     @Override
     public int delete(int idx) {
@@ -31,9 +41,34 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll();
     }
 
+//    @Override
+//    public Product findById(int idx) {
+//        return productRepository.findById(idx).get();
+//    }
+
     @Override
     public Product findById(int idx) {
-        return productRepository.findById(idx).get();
+        Product product=productRepository.findById(idx).get();
+
+        int reviewCount=reviewRepository.findByProductIdx(idx).size();
+        System.out.println("reviewCount : "+reviewCount);
+        float allTotal = 0;
+        if(reviewCount!=0) {
+            for (Review review : reviewRepository.findByProductIdx(idx)) {
+
+                List<Score> scores = scoreRepository.findByReviewIdx(review.getIdx());
+
+                for (Score s : scores) {
+                    allTotal += s.getTotal();
+                }
+            }
+            float allTotalAvg = allTotal / reviewCount;
+            System.out.println("allTotal : "+allTotal);
+            System.out.println("allTotalAvg : "+allTotalAvg);
+            product.setAllTotal(allTotalAvg);
+        }
+
+        return product;
     }
 
     @Override

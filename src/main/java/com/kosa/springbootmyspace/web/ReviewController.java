@@ -118,6 +118,7 @@ public class ReviewController {
      * @param idx
      * @return
      */
+    @GetMapping("/product/{idx}")
     public ResponseEntity<List<Review>> findAllByProductIdx(@PathVariable int idx) {
         try {
             List<Review> reviewList = reviewService.findAllByProductIdx(idx);

@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.kosa.springbootmyspace.domain.Score;
 
-public interface ScoreRepository extends JpaRepository<Score, Integer> {
+import java.util.List;
 
+public interface ScoreRepository extends JpaRepository<Score, Integer> {
+    List<Score> findByReviewIdx(int review_idx);
 }
