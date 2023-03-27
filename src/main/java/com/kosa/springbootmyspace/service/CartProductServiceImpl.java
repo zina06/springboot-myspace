@@ -1,18 +1,24 @@
 package com.kosa.springbootmyspace.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kosa.springbootmyspace.domain.Cart;
 import com.kosa.springbootmyspace.domain.CartProduct;
 import com.kosa.springbootmyspace.repository.CartProductRepository;
+import com.kosa.springbootmyspace.repository.CartRepository;
 
 @Service
 public class CartProductServiceImpl implements CartProductService {
 
     @Autowired
     private CartProductRepository cartProductRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
 
     @Override
     public int delete(int idx) {
@@ -24,13 +30,6 @@ public class CartProductServiceImpl implements CartProductService {
         }
         return result;
     }
-
-    // @Override
-    // public List<CartProduct> findAll(@PathVariable int idx) {
-    //
-    //
-    // return cartProductRepository.findAll();
-    // }
 
     @Override // xx
     public CartProduct findById(int idx) {
@@ -56,4 +55,10 @@ public class CartProductServiceImpl implements CartProductService {
         return result;
     }
 
+    @Override
+    public List<CartProduct> findByCart(int idx) {
+        Cart findCart = cartRepository.findById(idx).get();
+        List<CartProduct> cartProductList = cartProductRepository.findByCart(findCart);
+        return cartProductList;
+    }
 }
