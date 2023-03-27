@@ -65,4 +65,11 @@ public class OrderServiceImpl implements OrderService {
         return result;
     }
 
+    @Override
+    public Order findByMemberOrderByIdxAsc(int memberIdx){
+        Member findMember = memberRepository.findById(memberIdx).get();
+        List<Order> orderList = orderRepository.findByMemberOrderByIdxAsc(findMember);
+        return orderList.get(orderList.size()-1);
+    }
+
 }
